@@ -30,25 +30,25 @@ The tracked [results/tables/corpus_distribution.csv](../results/tables/corpus_di
 
 These labels cannot be reconciled from the tracked processed corpus alone. The CSV columns are *reported counts*, not independently audited numbers of distinct eligible records. **Do not repeat them in a promotional post as a verified end-to-end count** unless reconciled against the actual article version and underlying datasets.
 
-### 2. PRISMA counts and \`uncategorized\` status
+### 2. PRISMA counts and `uncategorized` status
 
-In [07_classify_corpora.R](../scripts/07_classify_corpora.R), the file named \`corpus_eligible\` is saved based on title/year/retraction eligibility. The displayed PRISMA \`included\` total additionally subtracts entries classified as \`uncategorized\`; that same removal is **not** applied to the saved \`corpus_eligible\` object.
+In [07_classify_corpora.R](../scripts/07_classify_corpora.R), the file named `corpus_eligible` is saved based on title/year/retraction eligibility. The displayed PRISMA `included` total additionally subtracts entries classified as `uncategorized`; that same removal is **not** applied to the saved `corpus_eligible` object.
 
-In addition, \`n_identified <- nrow(corpus_full)\` is evaluated **after** prior deduplication in [06_merge_deduplicate.R](../scripts/06_merge_deduplicate.R), while \`n_duplicates <- n_identified - nrow(eligible_df)\` counts exclusions at the next stage. Consequently, the label “duplicates removed” in the diagram is **not an independently reliable deduplication count**.
+In addition, `n_identified <- nrow(corpus_full)` is evaluated **after** prior deduplication in [06_merge_deduplicate.R](../scripts/06_merge_deduplicate.R), while `n_duplicates <- n_identified - nrow(eligible_df)` counts exclusions at the next stage. Consequently, the label “duplicates removed” in the diagram is **not an independently reliable deduplication count**.
 
 This identifies a discrepancy between labels and code paths; it does not demonstrate how the final published article calculated or reported its figures.
 
 ### 3. Historic guidance, current structure and template filenames
 
-The [Portuguese guide](../PESQUISA.md) describes an earlier RAP/FGV-oriented workflow and file locations, including \`article/\` paths that are not consistent with the present [manuscripts/](../manuscripts/) and [outputs-cobpit/](../outputs-cobpit/) structure. The previously visible README has been retained in [archive](archive/README_pre_documentation_2026-10-10.md).
+The [Portuguese guide](../PESQUISA.md) describes an earlier RAP/FGV-oriented workflow and file locations, including `article/` paths that are not consistent with the present [manuscripts/](../manuscripts/) and [outputs-cobpit/](../outputs-cobpit/) structure. The previously visible README has been retained in [archive](archive/README_pre_documentation_2026-10-10.md).
 
-The [COBPIT Python generator](../scripts/generate_cobpit_article.py) refers to \`manuscripts/templates/template-tc-cobpit.docx\`, whereas the presently tracked [template folder](../manuscripts/templates/) contains a differently named template. Re-running that generator as written may require file/path reconciliation; it has **not** been run as part of this documentation update.
+The [COBPIT Python generator](../scripts/generate_cobpit_article.py) refers to `manuscripts/templates/template-tc-cobpit.docx`, whereas the presently tracked [template folder](../manuscripts/templates/) contains a differently named template. Re-running that generator as written may require file/path reconciliation; it has **not** been run as part of this documentation update.
 
 ### 4. Evidence of executed workflows and manual decisions
 
 The checked [logs/steps](../logs/steps/) show a setup and OpenAlex collection activity, but do not establish full execution of each stage or a complete chain of manual review decisions. Publicly available GitHub Actions workflow definitions are not equivalent to verified successful runs. No successful end-to-end GitHub Actions execution was verified during this review.
 
-The repository's [gitignore](../.gitignore) excludes \`data/raw/\`, \`data/processed/\` and \`data/outputs/\`. Full reproduction therefore requires external retrieval, credentials where appropriate, and consistency checks; the tracked result figures and tables alone are not a complete frozen research dataset.
+The repository's [gitignore](../.gitignore) excludes `data/raw/`, `data/processed/` and `data/outputs/`. Full reproduction therefore requires external retrieval, credentials where appropriate, and consistency checks; the tracked result figures and tables alone are not a complete frozen research dataset.
 
 ### 5. Estimated maturity index
 

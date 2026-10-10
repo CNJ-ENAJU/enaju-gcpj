@@ -4,7 +4,7 @@
 
 The author reports that the article related to this project **has already been published** and has requested that it not be changed. This documentation update preserves the existing manuscripts, article PDFs/DOCX/HTML, figures, tables, scripts, original execution guide and historical logs as-is.
 
-The repository includes [outputs-cobpit/](../outputs-cobpit/) with several COBPIT-oriented file variants, including files labelled \`final\` and \`final-cego\` (blind review). Those filenames are **internal artifact labels**, not independent verification of the publisher's version of record. The journal/conference bibliographic record, DOI or proceedings link has not been established from the tracked files in this update. Cite the publisher's actual publication when its bibliographic information is available.
+The repository includes [outputs-cobpit/](../outputs-cobpit/) with several COBPIT-oriented file variants, including files labelled `final` and `final-cego` (blind review). Those filenames are **internal artifact labels**, not independent verification of the publisher's version of record. The journal/conference bibliographic record, DOI or proceedings link has not been established from the tracked files in this update. Cite the publisher's actual publication when its bibliographic information is available.
 
 ## What changed on 2026-10-10
 
@@ -18,10 +18,10 @@ The repository includes [outputs-cobpit/](../outputs-cobpit/) with several COBPI
 
 **Not changed:**
 
-- The article and every tracked \`manuscripts/\` and \`outputs-cobpit/\` item.
-- Scripts under \`scripts/\`, the runner files and computational methods.
-- Figures or CSV tables under \`results/\`.
-- Existing \`PESQUISA.md\` and historical logs.
+- The article and every tracked `manuscripts/` and `outputs-cobpit/` item.
+- Scripts under `scripts/`, the runner files and computational methods.
+- Figures or CSV tables under `results/`.
+- Existing `PESQUISA.md` and historical logs.
 - Dataset records or any scientific finding.
 
 ## How to interpret versions

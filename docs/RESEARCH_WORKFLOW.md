@@ -12,7 +12,7 @@ The focus is bibliometric mapping of institutional capacity development, educati
 
 ## Diagram: structure represented by the code
 
-\`\`\`mermaid
+```mermaid
 flowchart TD
     A["00 — Search definitions and environment"] --> B["01–05 — Collect bibliographic records"]
     B --> C["06 — Normalize, merge and deduplicate"]
@@ -21,7 +21,7 @@ flowchart TD
     E --> F["99 — Quarto article generation"]
     D -. "Review recommended; execution not confirmed" .-> H["Inspect uncategorized records"]
     E -. "Review recommended; execution not confirmed" .-> I["Interpret LDA labels and index assumptions"]
-\`\`\`
+```
 
 The diagram is an explanatory representation of a **sequential R workflow**, not a LangGraph program, event trace, or proof of human checkpoints having been completed.
 
@@ -31,7 +31,7 @@ The diagram is an explanatory representation of a **sequential R workflow**, not
 
 **Implemented sources and configuration:** [00_setup.R](../scripts/00_setup.R) and collection scripts for [Scopus](../scripts/01_collect_scopus.R), [OpenAlex](../scripts/02_collect_openalex.R), [Semantic Scholar](../scripts/03_collect_semantic_scholar.R), [Crossref](../scripts/04_collect_crossref.R) and [SciELO](../scripts/05_collect_scielo.R).
 
-**Inspectable decisions:** thematic corpora and search strings, date bounds and API-specific retrieval logic. The collection scripts were written to save source-specific outputs in unversioned \`data/raw/\` directories. Existence of code for five sources **does not establish** that all five provided records to any particular article version.
+**Inspectable decisions:** thematic corpora and search strings, date bounds and API-specific retrieval logic. The collection scripts were written to save source-specific outputs in unversioned `data/raw/` directories. Existence of code for five sources **does not establish** that all five provided records to any particular article version.
 
 **Execution evidence:** [selected logs](../logs/steps/) contain setup and an OpenAlex collection attempt. These selected logs do not independently verify an end-to-end execution of all source collectors.
 
@@ -39,17 +39,17 @@ The diagram is an explanatory representation of a **sequential R workflow**, not
 
 **Implemented:** [06_merge_deduplicate.R](../scripts/06_merge_deduplicate.R) harmonizes fields from different sources, prioritizes sources and removes duplicates using normalized DOI and title handling. Specifically, the visible code removes exact DOI matches and then applies normalized-title matching to records without DOIs. It should **not** be described as a fully validated fuzzy-matching algorithm.
 
-**Designed outputs:** corpus files and a deduplication report in \`data/processed/\`, which is excluded from version control.
+**Designed outputs:** corpus files and a deduplication report in `data/processed/`, which is excluded from version control.
 
 **Research judgment:** different choices for identifier normalization, source priority or record consolidation could affect the retained corpus. The script exposes these choices for inspection; this document does not assert that a separate human adjudication of duplicates took place.
 
 ### 3. Thematic classification, eligibility and reporting
 
-**Implemented:** [07_classify_corpora.R](../scripts/07_classify_corpora.R) uses dictionaries of nuclear terms against titles, abstracts and keywords. It assigns the labels \`A\`, \`B\`, \`C\`, \`D\`, \`multi_corpus\` or \`uncategorized\`. The script also marks some records ineligible when the title is absent/too short, the year falls outside the configured period, or the record is marked as retracted, and constructs PRISMA-labelled statistics and a diagram.
+**Implemented:** [07_classify_corpora.R](../scripts/07_classify_corpora.R) uses dictionaries of nuclear terms against titles, abstracts and keywords. It assigns the labels `A`, `B`, `C`, `D`, `multi_corpus` or `uncategorized`. The script also marks some records ineligible when the title is absent/too short, the year falls outside the configured period, or the record is marked as retracted, and constructs PRISMA-labelled statistics and a diagram.
 
-**Recommended (not independently verified as performed):** [PESQUISA.md](../PESQUISA.md) recommends examining \`uncategorized\` records before discarding them.
+**Recommended (not independently verified as performed):** [PESQUISA.md](../PESQUISA.md) recommends examining `uncategorized` records before discarding them.
 
-**Important caveat:** the saved \`corpus_eligible\` and the PRISMA counts do not apply the \`uncategorized\` category in exactly the same way. The field labelled \`duplicates\` is also calculated downstream of earlier deduplication, so it cannot safely be taken as a standalone count of actual duplicates removed. See [Evidence and limitations](EVIDENCE_AND_LIMITATIONS.md).
+**Important caveat:** the saved `corpus_eligible` and the PRISMA counts do not apply the `uncategorized` category in exactly the same way. The field labelled `duplicates` is also calculated downstream of earlier deduplication, so it cannot safely be taken as a standalone count of actual duplicates removed. See [Evidence and limitations](EVIDENCE_AND_LIMITATIONS.md).
 
 ### 4. Bibliometric analysis and interpretation
 

@@ -11,8 +11,8 @@ The analogy is useful for explaining why scientific automation should expose *wh
 | Concept | What is visible in this repository | Boundary of the analogy |
 | --- | --- | --- |
 | **Nodes: discrete units of work** | [run_all.R](../run_all.R) enumerates individual scripts for collection, deduplication, classification, analysis and rendering. | R scripts are **not** LangGraph nodes. |
-| **Edges: dependencies/order** | [run_all.R](../run_all.R) specifies execution order; several scripts read files written by earlier scripts, e.g. [07_classify_corpora.R](../scripts/07_classify_corpora.R) reads \`corpus_full.rds\`. | This is sequential orchestration and data dependency, **not** LangGraph graph routing. |
-| **State: intermediate representations** | Scripts refer to RDS/CSV objects under \`data/raw/\` and \`data/processed/\` and to tracked tables in [results/](../results/). | These are persistent research artifacts, **not** LangGraph's shared graph state. Many intermediates are unversioned. |
+| **Edges: dependencies/order** | [run_all.R](../run_all.R) specifies execution order; several scripts read files written by earlier scripts, e.g. [07_classify_corpora.R](../scripts/07_classify_corpora.R) reads `corpus_full.rds`. | This is sequential orchestration and data dependency, **not** LangGraph graph routing. |
+| **State: intermediate representations** | Scripts refer to RDS/CSV objects under `data/raw/` and `data/processed/` and to tracked tables in [results/](../results/). | These are persistent research artifacts, **not** LangGraph's shared graph state. Many intermediates are unversioned. |
 | **Persistence and resumption** | The [original guide](../PESQUISA.md) describes caching and stage-by-stage re-execution; scripts reference cached inputs and outputs. | No LangGraph checkpointer or verified fault-tolerant resume semantics are demonstrated. |
 | **Observability / audit trail** | Source code, selected [logs](../logs/) and [tables/figures](../results/) provide some process visibility. | Records are partial; no complete provenance/audit log for each research decision is evidenced. |
 | **Human review** | The [guide](../PESQUISA.md) explicitly recommends manual examination of uncategorized records, LDA topic labels and estimated index scores. | A *recommendation* is not a documented human approval checkpoint; completion is not verified. |
@@ -20,9 +20,9 @@ The analogy is useful for explaining why scientific automation should expose *wh
 
 ## A concrete example: classification requires interpretation
 
-In [scripts/07_classify_corpora.R](../scripts/07_classify_corpora.R), rules classify bibliographic records using terms found in title, abstract and keywords. The code explicitly provides \`uncategorized\` and \`multi_corpus\` outcomes. This makes a methodological issue inspectable: *a lexical match is not the same as a verified conceptual fit*.
+In [scripts/07_classify_corpora.R](../scripts/07_classify_corpora.R), rules classify bibliographic records using terms found in title, abstract and keywords. The code explicitly provides `uncategorized` and `multi_corpus` outcomes. This makes a methodological issue inspectable: *a lexical match is not the same as a verified conceptual fit*.
 
-The [research guide](../PESQUISA.md) recommends examining \`uncategorized\` records before exclusion. It does **not** provide a complete signed decision record showing that such a review occurred. The distinction matters: workflow design can **invite** critical review, but the presence of a review instruction is not evidence of its execution.
+The [research guide](../PESQUISA.md) recommends examining `uncategorized` records before exclusion. It does **not** provide a complete signed decision record showing that such a review occurred. The distinction matters: workflow design can **invite** critical review, but the presence of a review instruction is not evidence of its execution.
 
 A second example appears in [scripts/12_topic_modeling.R](../scripts/12_topic_modeling.R), which writes suggested labels and explicitly says they should be reviewed manually. This illustrates how computational output and substantive interpretation are different operations; it does not demonstrate that a manual review was completed.
 
